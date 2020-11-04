@@ -1,0 +1,73 @@
+@import "./utils/variables";
+@import "./utils/functions";
+@import "./utils/mixins";
+@import "./utils/animations";
+@import "./base/base";
+@import "./base/typography";
+@import "./components/buttons";
+@import "./layouts/header";
+@import "./layouts/footer";
+@import "./layouts/container";
+@import "./pages/product";
+
+/* * {
+    border: 1px solid black;
+} */
+
+$color-primary: #290A03;
+// $color-secondary:#FF79DA;
+$color-tertiary:#FEF5ED;
+
+body {
+    width: 100%;
+    margin:0;
+    /* background-color: #FCF6EA; */
+    background: $color-tertiary url("../images/bg\ ours\ peluche\ beige.jpg") no-repeat fixed;
+    background-size: auto 90vh;
+    background-position-y: bottom;
+}
+header {
+    background-color:white;
+    border-bottom: 1px solid $color-primary;
+    height: 15vh;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index: 9999;
+    & .logo-brand {
+        display: flex;
+        align-items: center;
+
+        & .logo {
+            position: relative;
+            margin: auto 15px;
+        }
+
+        & .chariot {
+            fill : $color-primary;
+            stroke : $color-primary;
+        }
+        
+        & .roues{
+            position: absolute;
+            bottom : 2px;    
+            left : 4px;        
+            fill : $color-primary;
+            stroke : white;
+        }
+    }
+    & button {
+        position: absolute;
+        top: 25%;
+        right: 20px;
+    }
+}
+main{
+    position: relative;
+    top : 20vh;
+}
+footer{
+    position: relative;
+    top : 20vh;
+}
