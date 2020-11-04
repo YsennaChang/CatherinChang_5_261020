@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Salsa&display=swap");
+h1 {
+  font-family: "Salsa", cursive;
+  color: #290A03;
+}
+
+h2, h3, h4, h5, p, li, a {
+  font-family: "Montserrat", sans-serif;
+  color: #290A03;
+}
+
+/* * {
+    border: 1px solid black;
+} */
+body {
+  width: 100%;
+  margin: 0;
+  /* background-color: #FCF6EA; */
+  background: #FEF5ED url("../images/bg ours peluche beige.jpg") no-repeat fixed;
+  background-size: auto 90vh;
+  background-position-y: bottom;
+}
+
+header {
+  background-color: white;
+  border-bottom: 1px solid #290A03;
+  height: 15vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+header .logo-brand {
+  display: flex;
+  align-items: center;
+}
+header .logo-brand .logo {
+  position: relative;
+  margin: auto 15px;
+}
+header .logo-brand .chariot {
+  fill: #290A03;
+  stroke: #290A03;
+}
+header .logo-brand .roues {
+  position: absolute;
+  bottom: 2px;
+  left: 4px;
+  fill: #290A03;
+  stroke: white;
+}
+header button {
+  position: absolute;
+  top: 25%;
+  right: 20px;
+}
+
+main {
+  position: relative;
+  top: 20vh;
+}
+
+footer {
+  position: relative;
+  top: 20vh;
+}
+
+/*# sourceMappingURL=style.css.map */

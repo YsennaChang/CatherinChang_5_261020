@@ -1,0 +1,20 @@
+{
+  "name": "catherinchang_5_261020",
+  "version": "1.0.0",
+  "description": "Construisez un site e-commerce",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch ./sass/main.scss:./css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YsennaChang/CatherinChang_5_261020.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YsennaChang/CatherinChang_5_261020/issues"
+  },
+  "homepage": "https://github.com/YsennaChang/CatherinChang_5_261020#readme"
+}
