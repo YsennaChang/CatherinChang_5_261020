@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/YsennaChang/CatherinChang_5_261020/issues"
   },
-  "homepage": "https://github.com/YsennaChang/CatherinChang_5_261020#readme"
+  "homepage": "https://github.com/YsennaChang/CatherinChang_5_261020#readme",
+  "dependencies": {
+    "bootstrap": "^4.5.3"
+  }
 }

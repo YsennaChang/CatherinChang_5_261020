@@ -1,4 +1,5 @@
 @import "./utils/variables";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import "./utils/functions";
 @import "./utils/mixins";
 @import "./utils/animations";
@@ -15,14 +16,14 @@
 } */
 
 $color-primary: #290A03;
-// $color-secondary:#FF79DA;
+$color-secondary:#FF79DA;
 $color-tertiary:#FEF5ED;
 
 body {
     width: 100%;
     margin:0;
     /* background-color: #FCF6EA; */
-    background: $color-tertiary url("../images/bg\ ours\ peluche\ beige.jpg") no-repeat fixed;
+    background: $color-tertiary url("../images/bg-ours-peluche-beige.jpg") no-repeat fixed;
     background-size: auto 90vh;
     background-position-y: bottom;
 }
@@ -34,11 +35,7 @@ header {
     top:0;
     left:0;
     width:100%;
-    z-index: 9999;
-    & .logo-brand {
-        display: flex;
-        align-items: center;
-
+    z-index: 1;
         & .logo {
             position: relative;
             margin: auto 15px;
@@ -56,18 +53,13 @@ header {
             fill : $color-primary;
             stroke : white;
         }
-    }
-    & button {
+    & .btn {
         position: absolute;
         top: 25%;
         right: 20px;
     }
 }
-main{
-    position: relative;
-    top : 20vh;
-}
-footer{
+main, footer{
     position: relative;
     top : 20vh;
 }
