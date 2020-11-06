@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <h5 class="alert-heading">Félicitations ! Vous avez réussi !</h5>
+        <h5 class="alert-heading">Félicitations <span id="firstNameSaved"></span> ! Vous avez réussi !</h5>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">× fermer</span>
          </button>
@@ -41,7 +41,8 @@
             Enregistrer ces informations dans le localStorage
             </label>
          </div>
-        <button class="btn btn-primary" type="button" data-toggle="button" aria-pressed="false" id="submitBtn">Enregistrer</button>
+        <button type="submit" class="btn btn-primary"  id="contact-submited">Enregistrer</button>
+        <!-- type="button" data-toggle="button" aria-pressed="false" -->
     </form>
 
     <!-- Optional JavaScript -->
@@ -53,5 +54,6 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="form.js" defer></script>
 </body>
 </html>
