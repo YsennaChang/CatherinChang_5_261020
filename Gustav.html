@@ -8,22 +8,12 @@
         <link rel="stylesheet" href="./css/style.css" />
         <link rel="shortcut icon" type="image/png" href="./images/orinoco-favicon.png">
 
-        <title>Accueil</title>
+        <title>Norbert</title>
     </head>
     <body>
         <header class="fixed-top">
             <nav class="navbar navbar-expand-lg  bg-transparent navbar-light">
                 <a class="navbar-brand" href="index.html">
-                    <!-- <div class="logo">
-                        <svg class="chariot" width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.50266 4.98191H25.7284C26.2426 4.98191 25.8998 6.37557 25.7284 6.87331L23.3288 17.2262C23.0716 18.0226 22.8145 18.0226 22.6431 18.0226H8.33084L6.53109 22.5023H20.4149L20.4149 23H5.93117V22.5023L7.81663 18.0226L3.96002 1.79638H2.24597C1.73175 2.59276 1.18327 2.19457 1.04614 1.79638C0.874729 1.29865 1.21754 1.09955 1.47465 1H3.96002C4.47423 1 4.55993 1.29864 4.55993 1.29864L5.50266 4.98191Z"/>
-                            <path d="M7.81663 18.0226L3.96002 1.79638H2.24597C1.73175 2.59276 1.18327 2.19457 1.04614 1.79638C0.874729 1.29865 1.21754 1.09955 1.47465 1H3.96002C4.47423 1 4.55993 1.29864 4.55993 1.29864L5.50266 4.98191H25.7284C26.2426 4.98191 25.8998 6.37557 25.7284 6.87331L23.3287 17.2262C23.0716 18.0226 22.8145 18.0226 22.6431 18.0226H8.33084M7.81663 18.0226L5.93117 22.5023M7.81663 18.0226H8.33084M5.93117 22.5023H6.53109M5.93117 22.5023V23H20.4149L20.4149 22.5023H6.53109M6.53109 22.5023L8.33084 18.0226"/>
-                        </svg>
-                        <svg class="roues" width="20" height="6" viewBox="0 0 20 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3.11765 1C1.97108 1 1 2.05882 1 3.11765C1 4.17647 1.70588 5.23529 3.11765 5.23529C4.70185 5.23529 5.23529 4.17647 5.23529 3.11765C5.23529 2.05882 4.26421 1 3.11765 1Z"  stroke-width="0.2"/>
-                            <path d="M16.8824 1C15.7358 1 14.7647 2.05882 14.7647 3.11765C14.7647 4.17647 15.4706 5.23529 16.8824 5.23529C18.4666 5.23529 19 4.17647 19 3.11765C19 2.05882 18.0289 1 16.8824 1Z" stroke-width="0.2"/>
-                        </svg>
-                    </div> -->
                     <h1><i class="fas fa-shopping-cart"></i>Orinourson</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
@@ -45,39 +35,29 @@
         </header>
         <div class="main-aside container-fluid">
             <main class="container">
-                <aside class="jumbotron">
-                    <h2>Notre credo</h2>
-                    <p>
-                        Se démarquer des grands site e-commerce comme Amazon en créant des applications thématiques ne vendant qu’un seul groupe de produits. Il y a par exemple Oribook pour les livres ou Oritextil pour les vêtements.
-                    </p>
-                    <div class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <!-- <div class="carousel-item active">
-                                <img src="images/teddy_1.jpg" alt="Teddy1">
-                            </div> -->
-                        </div>
-                    </div>
-                </aside>
                 <article>
-                    <h2>Nos Teddies</h2>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <input class="form-control" id="searchInput" type="text" placeholder="Chercher son teddy. Si votre mot est dans une description de Teddy, ce moteur le trouvera pour vous ...">
-                        </div>
-                    </div>
-                    <div id="teddiesCard" class="row">
-                        <!-- <section class="col-12 col-md-6 col-lg-3 card">
-                            <img class="card-img-top shadow-sm" src="/images/teddy_1.jpg"></img>
-                            <div class="card-body">
-                                <a class="stretched-link" href="#">
-                                    <h3 class="card-title">Nom du Teddy</h3>
-                                    <span class="bg-primary text-light p-1">Price €</span>
-                                </a>
+                    <div class="row">
+                        <section class="col-12 card">
+                            <div class="card-body d-flex">
+                                <img id="photoTeddy" class="float-left shadow-sm" style="max-width:400px;" src="/images/teddy_1.jpg"></img>
                                 <div class="card-text">
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit minus omnis amet ut at ex, ipsa odio error atque! Repellendus voluptatibus neque temporibus laboriosam quaerat explicabo adipisci blanditiis est animi!</p> 
-                                </div>
-                            </div>
-                        </section> -->                
+                                    <h2 id="nameTeddy" class="card-title ml-3">Nom du Teddy</h3> 
+                                    <span id="priceTeddy" class="bg-primary text-light p-1 ml-3">Price €</span>
+                                    <div class="form-group col-12 mt-2">
+                                        <label for="colorOption">Choix de la couleur</label>
+                                        <select class="form-control" id="colorOption">
+                                            <option id="Option1">Choisissez votre couleur</option>
+                                            <!-- <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option> -->
+                                        </select>
+                                    </div>
+                                    <a class="btn btn-primary ml-3" href="form.html" type="submit" id="ajouterPanier"><i class="fas fa-shopping-cart"></i>Ajouter au panier</a> 
+                                </div>    
+                            </div>        
+                            <p id="descriptionTeddy">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit minus omnis amet ut at ex, ipsa odio error atque! Repellendus voluptatibus neque temporibus laboriosam quaerat explicabo adipisci blanditiis est animi! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam a nulla eaque similique labore facere vero porro error suscipit doloribus, ducimus magnam quaerat, earum enim ea, obcaecati esse odio. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo quibusdam velit numquam pariatur laudantium voluptatem obcaecati beatae natus modi quasi, deleniti magni debitis sapiente suscipit tempora iure quis. Recusandae, rem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ducimus nostrum quas animi fugit libero, eaque voluptate dolore, soluta facilis iure odit. Ea cupiditate odio dignissimos perferendis impedit! Aperiam, alias? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore illo quod, maiores asperiores quas provident cupiditate expedita mollitia itaque? Sapiente impedit nam delectus blanditiis eaque voluptas quia id repellendus explicabo.</p>
+                        </section>
                     </div>
                 </article>
             </main>
@@ -86,7 +66,7 @@
                     <h5 class="alert-heading">Félicitations <span id="firstNameSaved"></span> ! Vous avez réussi !</h5>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
-                     </button>
+                    </button>
                 </div>
                 <form id="contact-form">
                     <div class="form-group">
@@ -130,23 +110,13 @@
         </div>
             <!-- Optional JavaScript -->
 
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script>
-            $(document).ready(function(){
-                $("#searchInput").on("keyup", function() {
-                    var value = $(this).val().toLowerCase();
-                    $("#teddiesCard .col-12").filter(function() {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                    });
-                });
-            });
-        </script>
-        <script type="text/javascript" src="index.js" defer></script>
-    </body>
-</html>
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            <script type="text/javascript" src="product.js" defer></script>
+        </body>
+    </html>

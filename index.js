@@ -1,4 +1,4 @@
-// ==== outil dev :  rendu du back ====//
+//==== outil dev :  rendu du back ====//
 
 // var request= new XMLHttpRequest();
 // request.onreadystatechange = function (){
@@ -8,7 +8,6 @@
 // }
 // request.open ("GET", "http://localhost:3000/api/teddies");
 // request.send();  
-
 
 // ==== I.Afficher les éléments de manière dynamique ====//
 
@@ -32,11 +31,9 @@ imgURL.onreadystatechange = function (){
             imageCarousel.src = response[i].imageUrl;
             imageCarousel.classList.add("d-block","w-50","my-1","mx-auto","shadow-sm","rounded");
             imageCarousel.alt = response[i].name;
-            // console.log(imageCarousel);
         }
     }
 }
-
 imgURL.open ("GET", "http://localhost:3000/api/teddies");
 imgURL.send();  
 
@@ -72,7 +69,8 @@ cardGenerator.onreadystatechange = function () {
 
             var stretchedLink = document.createElement("a");
             stretchedLink.classList.add("stretched-link");
-            stretchedLink.href = "#";
+            var regex = / /g;
+            stretchedLink.href = response[i].name.replace(regex,"-")+".html";
             cardBody.appendChild(stretchedLink);
 
             //création block h3//
@@ -86,7 +84,8 @@ cardGenerator.onreadystatechange = function () {
 
             var price = document.createElement("span");
             price.classList.add("bg-primary","text-light","p-1");
-            price.innerHTML = response[i].price + " €";
+            var numberFormated = new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR'}).format((response[i].price)/100)
+            price.innerHTML = numberFormated;
             stretchedLink.appendChild(price);
 
             //création block cardText//
@@ -100,3 +99,24 @@ cardGenerator.onreadystatechange = function () {
 }
 cardGenerator.open ("GET", "http://localhost:3000/api/teddies");
 cardGenerator.send(); 
+
+// ==== Envoyer des données au localStorage ====//
+
+var contactSubmited = document.getElementById("contact-submited");
+contactSubmited.addEventListener("click", (event) => {
+    event.preventDefault();
+    var contact = {
+        firstName : document.getElementById("firstName").value,
+        lastName : document.getElementById("lastName").value,
+        address: document.getElementById("address").value,
+        city : document.getElementById("city").value,
+        email : document.getElementById("email").value
+    }
+
+    localStorage.setItem("contact",JSON.stringify(contact));
+    //utilisé les données du localStorage pour afficher un message de réussite personalisé"//
+    var contactStorage = localStorage.getItem("contact");
+    var contactStorageJSON = JSON.parse(contactStorage);
+    var firstNameSaved = document.getElementById("firstNameSaved");
+    firstNameSaved.innerHTML = contactStorageJSON.firstName;
+});

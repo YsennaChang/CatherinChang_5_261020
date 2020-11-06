@@ -19,18 +19,12 @@ body {
     width: 100%;
     margin:0;
     background: $tertiary url("../images/bg-ours-peluche-beige.jpg") no-repeat fixed;
-    background-size: auto 90vh;
+    background-size: auto 95vh;
     background-position-y: bottom;
 }
 header {
     background-color:white;
     border-bottom: 1px solid $primary;
-    height: 15vh;
-    position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    z-index: 1;
         & .logo {
             position: relative;
             margin: auto 15px;
@@ -54,7 +48,12 @@ header {
         right: 20px;
     }
 }
-main, footer{
+
+main, .alert, form {
     position: relative;
     top : 20vh;
+    padding-bottom: 20vh;
+}
+.main-aside{
+    display: flex;
 }
