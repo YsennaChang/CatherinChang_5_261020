@@ -91,9 +91,6 @@ btnModify.addEventListener("click", (event) => {
 
 
 
-
-
-
 // ==== II.Afficher les éléments de manière dynamique ====//
 async function requestAPI () {
     var responseAPI = await fetch(routeAPI);
