@@ -49,11 +49,14 @@ header {
     }
 }
 
-main, .alert, form {
+.main-aside {
     position: relative;
-    top : 20vh;
-    padding-bottom: 20vh;
+    top : 82px;
 }
 .main-aside{
     display: flex;
+}
+
+.is-not-visible{
+    display:none !important;
 }
