@@ -55,18 +55,14 @@ function replaceBlockRegisteredInfos (){
     //relecture des données dans le localStorage//
     var contactJSON = JSON.parse(localStorage.getItem("contact"));
     //insertion dans le bloc infos//
-    registeredInfos.innerHTML = 
-    contactJSON.firstName+" "+"<b>"+contactJSON.lastName.toUpperCase()+"</b>"+"<br/>"
-    +contactJSON.address+ "<br/>"
-    +contactJSON.city+ "<br/>"
-    +contactJSON.email;
+    registeredInfos.innerHTML = contactJSON.firstName+" "+"<b>"+contactJSON.lastName.toUpperCase()+"</b>"+"<br/>"+contactJSON.address+ "<br/>" +contactJSON.city+ "<br/>"+contactJSON.email;
 
     //Message success, personalisation avec le prénom de l'utilisateur//
     var firstNameSaved = document.getElementById("firstNameSaved");
     firstNameSaved.innerHTML = contactJSON.firstName;
 }
 
-if (localStorage.getItem("contact").length>0) {
+if (localStorage.getItem("contact").length>2) {
     // Formulaire contact invisible//
     form.classList.toggle("is-not-visible");
 
@@ -182,8 +178,9 @@ function generateCardsInformations () {
     }
 }
 
-
-
+//===== 3. Afficher nombre d'article dans le panier ==== //
+var numberOfProductsInCart = document.getElementById("nbProduct");
+numberOfProductsInCart.innerHTML=JSON.parse(localStorage.getItem("products")).length;
 
 
     
