@@ -96,23 +96,24 @@ async function requestAPI () {
         //3b) prix rattaché à subtotal
         var subtotal = document.getElementById("subtotal");
         subtotal.innerHTML = sumFormated;
-    })
+    });
     
-}
+};
 requestAPI();
 
 function formatInPrice (value){
     return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR'}).format(value/100);
 }
 
-var commandConfirmed = document.getElementById("command-confirmed");
-commandConfirmed.addEventListener("click", (event)=>{
+// var commandConfirmed = document.getElementById("command-confirmed");
+// commandConfirmed.addEventListener("click", (event)=>{
+//     event.preventDefault();
+
     //5a) récupérer object contact et tableau produits dans le localStorage
-    event.preventDefault;
+    
     var contactCommand = JSON.parse(localStorage.getItem("contact"));
     var productsCommand = JSON.parse(localStorage.getItem("products"));
 
-    // var productsCommand = localStorage.getItem("products");
     //5b) envoyer au serveur API
     
     var myHeader = new Headers({
@@ -136,20 +137,14 @@ commandConfirmed.addEventListener("click", (event)=>{
    fetch("http://localhost:3000/api/teddies/order", myInit)
     .then((response) => response.json())
     .then((data) => {
-        var contact= {
-            firstName : data.firstName,
-            lastName : data.lastName,
-            address : data.address,
-            city : data.city,
-            email : data.email,
-        }
-        localStorage.setItem("contact",JSON.stringify(contact));
-        var products=data.products;
-        localStorage.setItem("products",JSON.stringify(products));
-        var orderId= data.orderId;
-        localStorage.setItem("orderId",JSON.stringify(orderId));
+        localStorage.setItem("data",JSON.stringify(data));
+        // var products=data.products;
+        // console.log(products);
+        // localStorage.setItem("products2",JSON.stringify(products));
+        // var orderId= data.orderId;
+        // localStorage.setItem("orderId",JSON.stringify(orderId));
     })
-});
+// });
 
     // III. 2) affecter la fonction localStorage.removeItem à l'icone Garbage
 

@@ -179,8 +179,16 @@ function generateCardsInformations () {
 }
 
 //===== 3. Afficher nombre d'article dans le panier ==== //
-var numberOfProductsInCart = document.getElementById("nbProduct");
-numberOfProductsInCart.innerHTML=JSON.parse(localStorage.getItem("products")).length;
+
+if(JSON.parse(localStorage.getItem(products))){
+    refreshNbOfProductInCart ();
+ }
+ 
+ function refreshNbOfProductInCart (){
+     var numberOfProductsInCart = document.getElementById("nbProduct");
+     numberOfProductsInCart.innerHTML=JSON.parse(localStorage.getItem("products")).length;
+ }
+ 
 
 
     

@@ -1,32 +1,5 @@
 var routeAPI = "http://localhost:3000/api/teddies";
 
-/** Infos à envoyer au backend
- *
- * Expects request to contain:
- * contact: {
- *   firstName: string,
- *   lastName: string,
- *   address: string,
- *   city: string,
- *   email: string
- * }
- * products: [string] <-- array of product _id
- *
- */
-
-//==== outil dev :  rendu du back ====//
-
-// async function renduDuBack(){
-//     var testAPI = await fetch(routeAPI);
-//     if (testAPI.ok){
-//         test = await testAPI.json()
-//         console.log(test); 
-//     } else {
-//         console.error (" Retour serveur : ", testAPI.status);
-//     }
-// }
-// renduDuBack();
-
 // ==== II. Afficher les éléments page produit en dynamique ====//
 
 var cart=[];
@@ -96,7 +69,11 @@ function addCartInLocalStorage () {
 }
 
 //===== 3. Afficher nombre d'article dans le panier ==== //
-refreshNbOfProductInCart ();
+
+
+if(JSON.parse(localStorage.getItem(products))){
+   refreshNbOfProductInCart ();
+}
 
 function refreshNbOfProductInCart (){
     var numberOfProductsInCart = document.getElementById("nbProduct");
