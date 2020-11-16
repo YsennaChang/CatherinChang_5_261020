@@ -4,11 +4,19 @@ var response;
 var idsInAPI=[];
 var indexsInCart=[];
 var sum=0;
-
-//===== 3. Afficher nombre d'article dans le panier ==== //
 var productsInCart = JSON.parse(localStorage.getItem("products"));
-var numberOfProductsInCart = document.getElementById("nbProduct");
-numberOfProductsInCart.innerHTML= productsInCart.length;
+
+//===== Afficher nombre d'article dans le panier ==== //
+
+
+if(JSON.parse(localStorage.getItem("products"))){
+    refreshNbOfProductInCart ();
+}
+
+function refreshNbOfProductInCart (){
+    var numberOfProductsInCart = document.getElementById("nbProduct");
+    numberOfProductsInCart.innerHTML= productsInCart.length;
+}
 
 // ==== III. Afficher les produits stockés dans le localStorage ====//
 
@@ -31,6 +39,7 @@ async function requestAPI () {
     var resume = document.getElementById("resume");
 
     indexsInCart.forEach(function(index, number){
+
         //0) div card-body rattaché à resume
         var cardBody = document.createElement("div");
         cardBody.classList.add("card-body","d-flex");
@@ -73,21 +82,12 @@ async function requestAPI () {
         removeProduct.type = "submit";
         cardBody.appendChild(removeProduct);
 
-
-        // for (let i=0; i< response.length; i++){
-        //     var btnRemoveProductFromCart = document.getElementsByClassName("btn-remove-product-from-cart")[i];
-        //     btnRemoveProductFromCart.addEventListener("click", (event) => {
-        //         event.preventDefault();
-        //         var productId = response[i]._id;
-        //         cart.push(productId);
-        //     });
-        // }
-        // localStorage.products.splice(element);
-
         //7) icone fontawesome rattaché à removeProduct
         var iconGarbage = document.createElement("i");
         iconGarbage.classList.add("fas","fa-trash-alt");
         removeProduct.appendChild(iconGarbage);
+
+
 
         // III. 3) Faire le sous total HT
         // 3a) constituer la liste des prix
@@ -97,22 +97,37 @@ async function requestAPI () {
         var subtotal = document.getElementById("subtotal");
         subtotal.innerHTML = sumFormated;
     });
-    
+    removeProductFromCart();
 };
 requestAPI();
+
+function removeProductFromCart (){
+    for (let i=0; i < productsInCart.length; i++) {
+        var btnRemoveProductFromCart = document.getElementsByClassName("btn-remove-product-from-cart")[i];
+        btnRemoveProductFromCart.addEventListener("click", (event) => {
+            event.preventDefault();
+            productsInCart.splice(i,1);
+            localStorage.setItem("products", JSON.stringify(productsInCart));
+            event.target.parentElement.remove();
+            refreshNbOfProductInCart();
+        })
+    }
+}
+
+
 
 function formatInPrice (value){
     return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR'}).format(value/100);
 }
 
-// var commandConfirmed = document.getElementById("command-confirmed");
-// commandConfirmed.addEventListener("click", (event)=>{
-//     event.preventDefault();
+// III. 5) Envoyer le récap de commande au serveur avec les informations contacts
+var commandConfirmed = document.getElementById("command-confirmed");
+commandConfirmed.addEventListener("click", (event)=>{
+    event.preventDefault();
 
     //5a) récupérer object contact et tableau produits dans le localStorage
     
     var contactCommand = JSON.parse(localStorage.getItem("contact"));
-    var productsCommand = JSON.parse(localStorage.getItem("products"));
 
     //5b) envoyer au serveur API
     
@@ -130,7 +145,7 @@ function formatInPrice (value){
                 city : contactCommand.city,
                 email : contactCommand.email,
             },
-            products: productsCommand
+            products: productsInCart
         })
     };
 
@@ -138,17 +153,14 @@ function formatInPrice (value){
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem("data",JSON.stringify(data));
-        // var products=data.products;
-        // console.log(products);
-        // localStorage.setItem("products2",JSON.stringify(products));
-        // var orderId= data.orderId;
-        // localStorage.setItem("orderId",JSON.stringify(orderId));
     })
-// });
+});
+
+
 
     // III. 2) affecter la fonction localStorage.removeItem à l'icone Garbage
 
     // III. 2,3 et 4 bis) faire un dénombrement des articles réccurents et afficher la quantité 3) rendre la quantité modifiable 4) faire un sous total par ligne
 
     // III. 4) Calculer la TVA et le transport
-    // III. 5) Envoyer le récap de commande au serveur avec les informations contacts
+

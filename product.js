@@ -1,8 +1,14 @@
 var routeAPI = "http://localhost:3000/api/teddies";
+var productsInCart = JSON.parse(localStorage.getItem("products"));
 
 // ==== II. Afficher les éléments page produit en dynamique ====//
+if(productsInCart){
+    var cart= productsInCart; // Reprise des éléments de cart du localStorage
+    refreshNbOfProductInCart ();    
+} else {
+    var cart=[]; // initialisation de la variable cart
+}
 
-var cart=[];
 var response;
 
 async function requestAPI () {
@@ -56,27 +62,16 @@ function addProductInCart () {
             event.preventDefault();
             var productId = response[i]._id;
             cart.push(productId);
-            addCartInLocalStorage ();
+            localStorage.setItem("products",JSON.stringify(cart));
             refreshNbOfProductInCart ();
         });
     }
 }
 
-function addCartInLocalStorage () {
-    localStorage.setItem("products",JSON.stringify(cart));
-    console.log(cart);
-
-}
-
 //===== 3. Afficher nombre d'article dans le panier ==== //
-
-
-if(JSON.parse(localStorage.getItem(products))){
-   refreshNbOfProductInCart ();
-}
 
 function refreshNbOfProductInCart (){
     var numberOfProductsInCart = document.getElementById("nbProduct");
-    numberOfProductsInCart.innerHTML=JSON.parse(localStorage.getItem("products")).length;
+    numberOfProductsInCart.innerHTML=productsInCart.length;
 }
 
