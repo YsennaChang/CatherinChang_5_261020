@@ -1,18 +1,6 @@
 var routeAPI = "http://localhost:3000/api/teddies";
 
 
-//==== outil dev :  rendu du back ====//           
-// async function renduDuBack(){
-//     var testAPI = await fetch(routeAPI);
-//     if (testAPI.ok){
-//         test = await testAPI.json()
-//         console.log(test); 
-//     } else {
-//         console.error (" Retour serveur : ", testAPI.status);
-//     }
-// }
-// renduDuBack();
-
 // =========== I. L'objet "contact" =========== //
 // Gestion des différents éléments en lien avec l'objet contact//
 // 1. comportement par défaut le localStorage est vide, afficher le formulaire contact, mettre en invisible le bloc info et bouton modifier//
@@ -62,7 +50,7 @@ function replaceBlockRegisteredInfos (){
     firstNameSaved.innerHTML = contactJSON.firstName;
 }
 
-if (localStorage.getItem("contact").length>2) {
+if (localStorage.getItem("contact")) {
     // Formulaire contact invisible//
     form.classList.toggle("is-not-visible");
 
@@ -180,15 +168,15 @@ function generateCardsInformations () {
 
 //===== 3. Afficher nombre d'article dans le panier ==== //
 
-if(JSON.parse(localStorage.getItem(products))){
-    refreshNbOfProductInCart ();
- }
- 
- function refreshNbOfProductInCart (){
-     var numberOfProductsInCart = document.getElementById("nbProduct");
-     numberOfProductsInCart.innerHTML=JSON.parse(localStorage.getItem("products")).length;
- }
- 
+if(JSON.parse(localStorage.getItem("products"))){ // valeur au chargement de la page //
+    NbOfProductInCart ();
+}
+
+function NbOfProductInCart (){
+    let productsInCart = JSON.parse(localStorage.getItem("products"));
+    let numberOfProductsInCart = document.getElementById("nbProduct");
+    numberOfProductsInCart.innerHTML= productsInCart.length;
+}
 
 
     

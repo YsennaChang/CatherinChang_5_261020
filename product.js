@@ -1,13 +1,6 @@
 var routeAPI = "http://localhost:3000/api/teddies";
 var productsInCart = JSON.parse(localStorage.getItem("products"));
-
-// ==== II. Afficher les éléments page produit en dynamique ====//
-if(productsInCart){
-    var cart= productsInCart; // Reprise des éléments de cart du localStorage
-    refreshNbOfProductInCart ();    
-} else {
-    var cart=[]; // initialisation de la variable cart
-}
+var optionsInCart = JSON.parse(localStorage.getItem("options"));
 
 var response;
 
@@ -22,6 +15,8 @@ async function requestAPI () {
 requestAPI();
 
 
+
+// ==== II. Afficher les éléments page produit en dynamique ====//
 function replaceStaticByDynamicInformations () {
     for (let i=0; i< response.length; i++){
         var photoTeddy = document.getElementsByClassName("photoTeddy")[i];
@@ -60,18 +55,41 @@ function addProductInCart () {
         var btnAddToCart = document.getElementsByClassName("btn-add-to-cart")[i];
         btnAddToCart.addEventListener("click", (event) => {
             event.preventDefault();
+            console.log(options);
             var productId = response[i]._id;
-            cart.push(productId);
+            cart.push(productId)
             localStorage.setItem("products",JSON.stringify(cart));
-            refreshNbOfProductInCart ();
+
+            var selectOption = document.getElementsByClassName("form-control")[i].value;
+
+            options.push(selectOption);
+            localStorage.setItem("options",JSON.stringify(options));
+            console.log(options);
+            NbOfProductInCart ();
         });
     }
 }
 
+
 //===== 3. Afficher nombre d'article dans le panier ==== //
 
-function refreshNbOfProductInCart (){
-    var numberOfProductsInCart = document.getElementById("nbProduct");
-    numberOfProductsInCart.innerHTML=productsInCart.length;
+if(JSON.parse(localStorage.getItem("products"))){ // valeur au chargement de la page //
+    var cart= productsInCart; // Reprise des éléments de cart
+    NbOfProductInCart ();
+} else {
+    var cart=[]; // initialisation de la variable cart
+    
+}
+
+if(JSON.parse(localStorage.getItem("options"))){
+    var options = optionsInCart; // Reprise des options du cart
+} else {
+    var options =[]; // initialisation de la variable option
+}
+
+function NbOfProductInCart (){
+    let productsInCart = JSON.parse(localStorage.getItem("products"));
+    let numberOfProductsInCart = document.getElementById("nbProduct");
+    numberOfProductsInCart.innerHTML= productsInCart.length;
 }
 

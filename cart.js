@@ -1,42 +1,61 @@
+// ==== 0 . Utilitaires ==== //
+
+// Récupérer l'objet contenant tous les objects de l'API pour ne plus avoir de latence au calcul de la somme à chaque changement dans le panier//
 
 var routeAPI = "http://localhost:3000/api/teddies";
-var response;
-var idsInAPI=[];
-var indexsInCart=[];
-var sum=0;
+
+fetch(routeAPI)
+.then(res => res.json())
+.then((allProductsInAPI) => {
+    localStorage.setItem("allProductsInAPI", JSON.stringify(allProductsInAPI));
+});
+var response = JSON.parse(localStorage.getItem("allProductsInAPI"));  
+
+// Récupérer le panier //
 var productsInCart = JSON.parse(localStorage.getItem("products"));
 
-//===== Afficher nombre d'article dans le panier ==== //
 
+// générer des tableaux ordonnés selon le back dans des variables globales //
 
-if(JSON.parse(localStorage.getItem("products"))){
-    refreshNbOfProductInCart ();
+var idOfProducts =[];
+var priceOfProducts =[];
+
+for (let i = 0; i < response.length; i++){
+    // Générer un tableau de id selon l'ordre dans l'API
+    var _id = response[i]._id;
+    idOfProducts.push(_id);
+    // Générer un tableau de prix selon l'ordre dans l'API
+    var price = response[i].price;
+    priceOfProducts.push(price);
 }
 
-function refreshNbOfProductInCart (){
-    var numberOfProductsInCart = document.getElementById("nbProduct");
-    numberOfProductsInCart.innerHTML= productsInCart.length;
-}
+// pour chacun des id du panier, trouver son index dans le back
 
-// ==== III. Afficher les produits stockés dans le localStorage ====//
 
-async function requestAPI () {
-    var myRequest = await fetch(routeAPI);
-    response = await myRequest.json();
-    // III. 1) créer un tableau référence des id selon l'ordre du back//
-    for (let i=0; i<response.length; i++){
-        var id = response[i]._id;
-        idsInAPI.push(id);
-    }
-    // III. 2) pour chacun des id du panier, trouver son index dans le back
+var indexsInCart=[];
+
+function getAnOrderedIndexInCart() {
+    
+    indexsInCart=[];
+    
+    let productsInCart = JSON.parse(localStorage.getItem("products"));
+
     for ( let i = 0; i < productsInCart.length; i++) {
-        var indexOf = idsInAPI.indexOf(productsInCart[i]);
-        indexsInCart.push(indexOf)
+        var indexOf = idOfProducts.indexOf(productsInCart[i]);
+        indexsInCart.push(indexOf);
     }
 
-    // III. 2) créer une ligne par produit dans le back
+}
+
+// III. 1) créer une ligne par produit dans le back
+
+createARowByProductsInCart();
+
+function createARowByProductsInCart () {
     
     var resume = document.getElementById("resume");
+
+    getAnOrderedIndexInCart();
 
     indexsInCart.forEach(function(index, number){
 
@@ -54,14 +73,21 @@ async function requestAPI () {
 
         //2) div card-text attachée à card-body
         var cardText = document.createElement("div");
-        cardText.classList.add("card-text","col-9","d-flex");
+        cardText.classList.add("card-text","col-7","d-flex");
         cardBody.appendChild(cardText);
 
-        //3) h3 nom du teddy attachée à div card-text
+        //3. a) h3 nom du teddy attachée à div card-text
         var teddyName = document.createElement("h4");
         teddyName.innerHTML = response[index].name;
-        teddyName.classList.add("ml-3","col-8");
+        teddyName.classList.add("ml-3","col-6");
         cardText.appendChild(teddyName);
+
+        //3. b) span Sa couleur attaché à div card-text
+        var option = document.createElement("span");
+        option.innerHTML =  JSON.parse(localStorage.getItem("options"))[number];
+        option.classList.add("p-1","ml-3","col-2","text-center")
+        cardText.appendChild(option);
+
 
         //4) span quantité attaché à div card-text (à développer en v2)
         var quantity = document.createElement("span");
@@ -71,11 +97,11 @@ async function requestAPI () {
 
         //5) span prix attaché à div card-text
         var price= document.createElement("span");
-        price.innerHTML = formatInPrice(response[index].price);
+        price.innerHTML = formatInPrice(priceOfProducts[index]);
         price.classList.add("p-1","ml-3","col-2","text-center");
         cardText.appendChild(price);
 
-        //6) lien pour retirer un produit attaché à card-body
+        //6) bouton pour enlever un produit attaché à card-body
         var removeProduct = document.createElement("button");
         removeProduct.classList.add("btn","btn-primary","ml-3","btn-add-to-cart","col-1", "btn-remove-product-from-cart","mx-auto");
         removeProduct.href = "#";
@@ -87,52 +113,83 @@ async function requestAPI () {
         iconGarbage.classList.add("fas","fa-trash-alt");
         removeProduct.appendChild(iconGarbage);
 
-
-
-        // III. 3) Faire le sous total HT
-        // 3a) constituer la liste des prix
-        sum += response[index].price;
-        sumFormated = formatInPrice(sum);
-        //3b) prix rattaché à subtotal
-        var subtotal = document.getElementById("subtotal");
-        subtotal.innerHTML = sumFormated;
     });
-    removeProductFromCart();
-};
-requestAPI();
+}
+// III. 2) Calcul de la somme des articles dans le panier
 
+// III. 2b) Calculer le total TTC //
+
+calculateTotal();
+
+function calculateTotal(){
+    
+    getAnOrderedIndexInCart();
+
+    let sum = 0;
+
+    // 3a) Ajouter chaque prix à la somme
+    indexsInCart.forEach(function(index){
+        sum += priceOfProducts[index];
+    });
+
+    sumFormated = formatInPrice(sum);
+
+    //3b) prix rattaché à subtotal
+    var subtotal = document.getElementById("subtotal");
+    subtotal.innerHTML = sumFormated;
+}
+
+// III. 3) affecter la fonction localStorage.removeItem à l'icone Garbage
+removeProductFromCart();
 function removeProductFromCart (){
+
+    let productsInCart = JSON.parse(localStorage.getItem("products"));
+    let optionsInCart = JSON.parse(localStorage.getItem("options"));
+
     for (let i=0; i < productsInCart.length; i++) {
         var btnRemoveProductFromCart = document.getElementsByClassName("btn-remove-product-from-cart")[i];
         btnRemoveProductFromCart.addEventListener("click", (event) => {
             event.preventDefault();
+
+            // Supprime l'article du localStorage
             productsInCart.splice(i,1);
             localStorage.setItem("products", JSON.stringify(productsInCart));
-            event.target.parentElement.remove();
-            refreshNbOfProductInCart();
+
+            //Supprime l'option de l'article du localStorage
+            optionsInCart.slice(i,1);
+            localStorage.setItem("options", JSON.stringify(optionsInCart));
+
+            // Enlève l'affichage de la ligne //
+            if(event.target.parentElement.classList == "card-body d-flex") {
+                event.target.parentElement.remove();
+            } else {
+                event.target.parentElement.parentElement.remove();
+            }
+            NbOfProductInCart();
+            calculateTotal();
         })
     }
 }
-
-
 
 function formatInPrice (value){
     return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR'}).format(value/100);
 }
 
-// III. 5) Envoyer le récap de commande au serveur avec les informations contacts
+// III. 4) Envoyer le récap de commande au serveur avec les informations contacts
 var commandConfirmed = document.getElementById("command-confirmed");
 commandConfirmed.addEventListener("click", (event)=>{
     event.preventDefault();
 
-    //5a) récupérer object contact et tableau produits dans le localStorage
+    //III. 4a) récupérer object contact et tableau produits dans le localStorage
     
-    var contactCommand = JSON.parse(localStorage.getItem("contact"));
+    let contactCommand = JSON.parse(localStorage.getItem("contact"));
+    let productsInCart = JSON.parse(localStorage.getItem("products"));
 
-    //5b) envoyer au serveur API
+    //III. 4b) formater et envoyer le contact et la commande au serveur API
     
     var myHeader = new Headers({
-        "content-Type" : "application/json"});
+        "content-Type" : "application/json"
+    });
 
     var myInit = { 
         method : "POST",
@@ -148,8 +205,8 @@ commandConfirmed.addEventListener("click", (event)=>{
             products: productsInCart
         })
     };
-
-   fetch("http://localhost:3000/api/teddies/order", myInit)
+    // III. 4c) sauvegarder la réponse du back dans le localStorage
+   fetch(routeAPI+"/order", myInit)
     .then((response) => response.json())
     .then((data) => {
         localStorage.setItem("data",JSON.stringify(data));
@@ -157,10 +214,16 @@ commandConfirmed.addEventListener("click", (event)=>{
 });
 
 
+// ======= Esthétique ======= //
 
-    // III. 2) affecter la fonction localStorage.removeItem à l'icone Garbage
+// Afficher nombre d'article dans le panier //
 
-    // III. 2,3 et 4 bis) faire un dénombrement des articles réccurents et afficher la quantité 3) rendre la quantité modifiable 4) faire un sous total par ligne
+if(JSON.parse(localStorage.getItem("products"))){ // valeur au chargement de la page //
+    NbOfProductInCart ();
+}
 
-    // III. 4) Calculer la TVA et le transport
-
+function NbOfProductInCart (){
+    let productsInCart = JSON.parse(localStorage.getItem("products"));
+    let numberOfProductsInCart = document.getElementById("nbProduct");
+    numberOfProductsInCart.innerHTML= productsInCart.length;
+}
