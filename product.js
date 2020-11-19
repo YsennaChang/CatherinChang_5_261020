@@ -55,16 +55,23 @@ function addProductInCart () {
         var btnAddToCart = document.getElementsByClassName("btn-add-to-cart")[i];
         btnAddToCart.addEventListener("click", (event) => {
             event.preventDefault();
-            console.log(options);
+
             var productId = response[i]._id;
             cart.push(productId)
             localStorage.setItem("products",JSON.stringify(cart));
 
             var selectOption = document.getElementsByClassName("form-control")[i].value;
+            let optionByDefault = "Choisissez votre couleur";
+            let noOption = "Surprenez-moi !";
 
-            options.push(selectOption);
+            if (selectOption === optionByDefault){
+                options.push(noOption)
+            } else {
+               options.push(selectOption); 
+            }
+            
             localStorage.setItem("options",JSON.stringify(options));
-            console.log(options);
+
             NbOfProductInCart ();
         });
     }

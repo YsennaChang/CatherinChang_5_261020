@@ -66,26 +66,26 @@ function createARowByProductsInCart () {
 
         //1) image miniature attachée à card-body
         var img = document.createElement("img");
-        img.classList.add("float-left","shadow-sm","col-2");
-        img.style.maxWidth="100px";
+        img.classList.add("float-left","shadow-sm","col-1");
+        // img.style.maxWidth="100px";
         img.src = response[index].imageUrl;
         cardBody.appendChild(img);
 
         //2) div card-text attachée à card-body
         var cardText = document.createElement("div");
-        cardText.classList.add("card-text","col-7","d-flex");
+        cardText.classList.add("card-text","col-10","d-flex");
         cardBody.appendChild(cardText);
 
         //3. a) h3 nom du teddy attachée à div card-text
         var teddyName = document.createElement("h4");
         teddyName.innerHTML = response[index].name;
-        teddyName.classList.add("ml-3","col-6");
+        teddyName.classList.add("ml-3","col-4");
         cardText.appendChild(teddyName);
 
         //3. b) span Sa couleur attaché à div card-text
         var option = document.createElement("span");
         option.innerHTML =  JSON.parse(localStorage.getItem("options"))[number];
-        option.classList.add("p-1","ml-3","col-2","text-center")
+        option.classList.add("p-1","ml-3","col-3","text-center")
         cardText.appendChild(option);
 
 
@@ -137,6 +137,7 @@ function calculateTotal(){
     //3b) prix rattaché à subtotal
     var subtotal = document.getElementById("subtotal");
     subtotal.innerHTML = sumFormated;
+
 }
 
 // III. 3) affecter la fonction localStorage.removeItem à l'icone Garbage
@@ -178,7 +179,6 @@ function formatInPrice (value){
 // III. 4) Envoyer le récap de commande au serveur avec les informations contacts
 var commandConfirmed = document.getElementById("command-confirmed");
 commandConfirmed.addEventListener("click", (event)=>{
-    event.preventDefault();
 
     //III. 4a) récupérer object contact et tableau produits dans le localStorage
     
@@ -223,7 +223,15 @@ if(JSON.parse(localStorage.getItem("products"))){ // valeur au chargement de la 
 }
 
 function NbOfProductInCart (){
+    
     let productsInCart = JSON.parse(localStorage.getItem("products"));
+    
+    //Affichage du nombre de produit dans le panier sur le bouton panier
     let numberOfProductsInCart = document.getElementById("nbProduct");
     numberOfProductsInCart.innerHTML= productsInCart.length;
+
+    // Affichage du nombre de produit dans le panier dans la ligne Total
+    let qty = document.getElementById("qty");
+    qty.innerHTML = productsInCart.length;
+
 }
