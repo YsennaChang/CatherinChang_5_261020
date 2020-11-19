@@ -82,6 +82,8 @@ async function requestAPI () {
             response = await responseAPI.json();
     generateCarouselImages();
     generateCardsInformations ();
+    addSelectInStorage();
+
     } else {
         console.error (" Retour serveur : ", responseAPI.status);
     }
@@ -178,5 +180,16 @@ function NbOfProductInCart (){
     numberOfProductsInCart.innerHTML= productsInCart.length;
 }
 
+// ==== 4. Sauvegarder la selection dans le localStorage ====//
 
+function addSelectInStorage(){
+    for (let i=0; i< response.length; i++) {
+        let card = document.getElementsByClassName("card")[i];
+        card.addEventListener("click", (e)=>{
+            var lastChoice = i;
+            localStorage.setItem("lastChoice", JSON.stringify(lastChoice));
+            console.log(lastChoice);
+        })
+    }
+}
     

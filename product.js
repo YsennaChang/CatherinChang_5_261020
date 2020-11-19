@@ -46,6 +46,19 @@ function replaceStaticByDynamicInformations () {
         var descriptionTeddy = document.getElementsByClassName("descriptionTeddy")[i];
         descriptionTeddy.innerHTML = response[i].description;
     }
+
+    // Routeur : Affiche la card du produit sélectionné dans la page d'accueil uniquement
+
+    let lastChoice = JSON.parse(localStorage.getItem("lastChoice"));
+    
+    if (lastChoice) {
+        for (let i=0; i < response.length; i++){
+            let row = document.getElementsByClassName("row")[i];
+            if (i !== lastChoice){
+                row.classList.add("is-not-visible");
+            }
+        }
+    }
 }
 
 //===== 2. Ajouter article au localStorage ==== //
