@@ -1,9 +1,9 @@
 var routeAPI = "http://localhost:3000/api/teddies";
 
 
-// =========== I. L'objet "contact" =========== //
-// Gestion des différents éléments en lien avec l'objet contact//
-// 1. comportement par défaut le localStorage est vide, afficher le formulaire contact, mettre en invisible le bloc info et bouton modifier//
+// =========== I. Enregistrement du contact =========== //
+
+// I. 1) comportement par défaut le localStorage est vide, afficher le formulaire contact, mettre en invisible le bloc info et bouton modifier//
 
 var form = document.getElementById("contact-form"); // visible (par défaut)
 var registeredInfos = document.getElementById("registered-infos"); // invisible (par défaut)
@@ -37,7 +37,7 @@ contactSubmited.addEventListener("click", (event) => {
 });
 
 
-// 2. L'objet contact existe déjà dans le localStorage au chargement de la page, affiche directement le bloc infos et le bouton "modifier" sans le formulaire de renseignement //
+// I. 2) L'objet contact existe déjà dans le localStorage au chargement de la page, affiche directement le bloc infos et le bouton "modifier" sans le formulaire de renseignement //
 
 function replaceBlockRegisteredInfos (){
     //relecture des données dans le localStorage//
@@ -75,14 +75,15 @@ btnModify.addEventListener("click", (event) => {
 
 
 
-// ==== II.Afficher les éléments de manière dynamique ====//
+// ==== II. Afficher les éléments de manière dynamique ====//
+
 async function requestAPI () {
     var responseAPI = await fetch(routeAPI);
     if (responseAPI.ok) {
-            response = await responseAPI.json();
-    generateCarouselImages();
-    generateCardsInformations ();
-    addSelectInStorage();
+        response = await responseAPI.json();
+        generateCarouselImages();
+        generateCardsInformations ();
+        addSelectInStorage();
 
     } else {
         console.error (" Retour serveur : ", responseAPI.status);
@@ -91,7 +92,7 @@ async function requestAPI () {
 }
 requestAPI();
 
-// ==== I.1) Carousel dynamique ====//
+// ==== II. 1) Carousel dynamique ====//
 
 function generateCarouselImages (){
     var carouselInner = document.getElementsByClassName("carousel-inner")[0];
@@ -111,7 +112,7 @@ function generateCarouselImages (){
     }
 }
 
-// ==== I.2) Card dynamique ====//
+// ==== II. 2) Card dynamique ====//
 
 function generateCardsInformations () {
     // pointage id teddiescard //
@@ -168,7 +169,8 @@ function generateCardsInformations () {
     }
 }
 
-//===== 3. Afficher nombre d'article dans le panier ==== //
+//=========== III. Features =========== //
+//III. 1) Afficher nombre d'article dans le panier ==== //
 
 if(JSON.parse(localStorage.getItem("products"))){ // valeur au chargement de la page //
     NbOfProductInCart ();
@@ -180,7 +182,7 @@ function NbOfProductInCart (){
     numberOfProductsInCart.innerHTML= productsInCart.length;
 }
 
-// ==== 4. Sauvegarder la selection dans le localStorage ====//
+// ==== II. 4) Sauvegarder la selection dans le localStorage ====//
 
 function addSelectInStorage(){
     for (let i=0; i< response.length; i++) {
