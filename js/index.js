@@ -170,6 +170,7 @@ function generateCardsInformations () {
 }
 
 //=========== III. Features =========== //
+
 //III. 1) Afficher nombre d'article dans le panier ==== //
 
 if(JSON.parse(localStorage.getItem("products"))){ // valeur au chargement de la page //

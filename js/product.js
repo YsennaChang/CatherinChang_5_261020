@@ -95,7 +95,7 @@ function addProductInCart () {
 }
 
 
-//===== II. 3) Afficher nombre d'article dans le panier ==== //
+//===== Afficher nombre d'article dans le panier ==== //
 
 if(JSON.parse(localStorage.getItem("products"))){ // Si panier non vide au chargement de la page
     var cart= productsInCart; // Reprise des éléments de cart
