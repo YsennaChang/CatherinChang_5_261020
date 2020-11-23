@@ -1,7 +1,7 @@
 var routeAPI = "http://localhost:3000/api/teddies";
 
 
-// =========== I. Enregistrement du contact =========== //
+// =========== Enregistrement du contact =========== //
 
 // I. 1) comportement par défaut le localStorage est vide, afficher le formulaire contact, mettre en invisible le bloc info et bouton modifier//
 
@@ -25,7 +25,7 @@ contactSubmited.addEventListener("click", (event) => {
     localStorage.setItem("contact",JSON.stringify(contact));
     // Afficher un message de réussite personalisé"//
     
-    // document.getElementById("msgSuccess").classList.toggle("is-not-visible");
+    $(".alert").show();
 
     //Insère les nouvelles informations du contact dans le bloc contact
     replaceBlockRegisteredInfos();

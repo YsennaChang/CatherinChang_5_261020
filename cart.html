@@ -31,7 +31,7 @@
                     </ul>
                 </div>
             </nav>
-            <a class="btn btn-primary" href="cart.html" type="submit" id="Panier">
+            <a class="btn btn-primary" href="cart.html" id="Panier">
                 <span id="nbProduct"></span>
                 <i class="fas fa-shopping-cart"></i>
                 Panier
@@ -63,7 +63,7 @@
                                 <span class="p-1 ml-3 col-2 text-center" id="subtotal"></span>
                             </div>                            
                         </div>
-                        <a class="btn btn-primary px-3 btn-add-to-cart" href="commanded.html" type="submit" id="command-confirmed">
+                        <a class="btn btn-primary px-3 btn-add-to-cart" href="commanded.html"  id="command-confirmed">
                             <i class="fas fa-shopping-cart"></i>Commander
                         </a>                         
                     </section>
@@ -71,41 +71,51 @@
                 </article>
             </main>
             <aside class="assistant col-2 bg-primary">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <h5 class="alert-heading">Félicitations <span id="firstNameSaved"></span> ! Vous avez réussi !</h5>
+                <div id="msgSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <h5 class="alert-heading">Félicitations <span id="firstNameSaved"></span> ! Vous avez réussi votre enregistrement!</h5>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form id="contact-form">
-                    <div class="form-group">
-                        <label for="lastName" class="text-light"> Nom :</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Bear" required/>            
+                <div class="movible mb-5">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="lastName" class="text-light"> Nom :</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Bear" required/>            
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName" class="text-light"> Prénom :</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Teddy" required/>            
+                        </div>
+                        <div class="form-group">
+                            <label for="address" class="text-light"> Adresse :</label>
+                            <input type="text" class="form-control" id="address" placeholder="Le village des nuages" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="city" class="text-light"> Ville :</label>
+                            <input type="text" class="form-control" id="city" placeholder="Bisouville" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="text-light"> Email :</label>
+                            <input type="email" class="form-control" id="email" placeholder="email@orinoco.com" required/>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="saveInStorage">
+                            <label class="form-check-label text-light" for="saveInStorage">
+                                Enregistrer ces informations dans le sessionStorage (par défaut, s'enregistre dans localStorage pour toujours)
+                            </label>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-light mt-3 text-primary"  id="contact-submited">Enregistrer</button>
+                        </div>
+
+                    </form>
+                    <div id="registered-infos" class="text-light ml-3 text-break is-not-visible">Insertion des données utilisateurs</div>
+                    <div class="text-center">
+                        <button id="btn-modify" class="btn btn-light text-primary mt-3 is-not-visible">Modifier</button>
                     </div>
-                    <div class="form-group">
-                        <label for="firstName" class="text-light"> Prénom :</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="Teddy" required/>            
-                    </div>
-                    <div class="form-group">
-                        <label for="address" class="text-light"> Adresse :</label>
-                        <input type="text" class="form-control" id="address" placeholder="Le village des nuages" required/>
-                    </div>
-                    <div class="form-group">
-                        <label for="city" class="text-light"> Ville :</label>
-                        <input type="text" class="form-control" id="city" placeholder="Bisouville" required/>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="text-light"> Email :</label>
-                        <input type="email" class="form-control" id="email" placeholder="email@orinoco.com" required/>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="saveInStorage">
-                        <label class="form-check-label text-light" for="gridCheck">
-                        Enregistrer ces informations dans le sessionStorage (par défaut, s'enregistre dans localStorage pour toujours)
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-light text-primary"  id="contact-submited">Enregistrer</button>
-                </form>
+                    
+                </div>
                 <footer class="container text-light">
                     <h2> Nos autres applications</h2>
                     <ul class="font-weight-bold">
@@ -126,6 +136,6 @@
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-            <script type="text/javascript" src="cart.js" defer></script>
+            <script src="cart.js" defer></script>
         </body>
     </html>
