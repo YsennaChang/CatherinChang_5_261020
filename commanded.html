@@ -7,6 +7,9 @@
         <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
         <link rel="stylesheet" href="./css/style.css" />
         <link rel="shortcut icon" type="image/png" href="./images/orinoco-favicon.png">
+
+        <script src="js/commanded.js" defer></script>
+
         <title>Confirmation de commande</title>
     </head>
     <body>
@@ -67,16 +70,5 @@
 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         
-        <script>
-            $(document).ready(function(){
-                $("#searchInput").on("keyup", function() {
-                    var value = $(this).val().toLowerCase();
-                    $("#teddiesCard .col-12").filter(function() {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                    });
-                });
-            });
-        </script>
-        <script src="./js/commanded.js" defer></script>
     </body>
 </html>

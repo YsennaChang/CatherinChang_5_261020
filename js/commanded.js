@@ -14,8 +14,11 @@ var city = document.getElementById("city");
 city.innerHTML = data.contact.city;
 
 var productsCommanded = document.getElementById("products-commanded");
-for(let i=0; i< data.products.length; i++) {
+
+for (let i=0; i < data.products.length ; i++) {
     var nameProduct = document.createElement("div");
-    nameProduct.innerHTML = "- "+data.products[i].name;
+    nameProduct.innerHTML = "- "+ data.products[i].name;
     productsCommanded.appendChild(nameProduct);
 };
+
+console.log(localStorage.getItem("data"));
