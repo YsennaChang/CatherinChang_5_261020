@@ -1,9 +1,17 @@
-// Afficher nombre d'article dans le panier //
-var numberOfProductsInCart = document.getElementById("nbProduct");
-var qty = document.getElementById("qty");
+// ==== Afficher nombre d'article dans le panier  ====//
+
+console.log("NbOfProduct says Hello !")
+
+const numberOfProductsInCart = document.getElementById("nbProduct");
+const qty = document.getElementById("qty");
+
+const NbOfProductInCart = () => {
+    numberOfProductsInCart.innerHTML= cart.length;
+    qty.innerHTML = cart.length;
+}
 
 if(JSON.parse(localStorage.getItem("cart"))){ // Si panier non vide au chargement de la page
-    var cart= JSON.parse(localStorage.getItem("cart")); // Reprise des éléments de cart
+    var cart= JSON.parse(localStorage.getItem("cart")); // Reprise des éléments du cart
     NbOfProductInCart (); // Et affichage du nombre sur le panier 
     console.log(cart);
 } else {
@@ -11,7 +19,3 @@ if(JSON.parse(localStorage.getItem("cart"))){ // Si panier non vide au chargemen
     numberOfProductsInCart.innerHTML= 0;
 }
 
-function NbOfProductInCart (){
-    numberOfProductsInCart.innerHTML= cart.length;
-    qty.innerHTML = cart.length;
-}

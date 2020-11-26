@@ -1,24 +1,33 @@
-var data = JSON.parse(localStorage.getItem("data"));
+// =========== Page Confirmation de commande =========== //
+// Remplir la page de remerciement par les informations renvoyées par l'API
 
+console.log("Commanded says Hello !")
 
-var orderId = document.getElementById("order-id");
+const data = JSON.parse(localStorage.getItem("data"));
+console.log(data);
+
+// Numéro de commande
+const orderId = document.getElementById("order-id");
 orderId.innerHTML = data.orderId;
 
-var nomPrénom = document.getElementById("nom-prénom");
+// Nom et Prénom Client
+const nomPrénom = document.getElementById("nom-prénom");
 nomPrénom.innerHTML = data.contact.firstName+" "+data.contact.lastName;
 
-var address = document.getElementById("address");
+// Adresse Client
+const address = document.getElementById("address");
 address.innerHTML = data.contact.address;
 
-var city = document.getElementById("city");
+// Ville Client
+const city = document.getElementById("city");
 city.innerHTML = data.contact.city;
 
-var productsCommanded = document.getElementById("products-commanded");
+// Récap des produits commandés
+const productsCommanded = document.getElementById("products-commanded");
 
 for (let i=0; i < data.products.length ; i++) {
-    var nameProduct = document.createElement("div");
+    const nameProduct = document.createElement("div");
     nameProduct.innerHTML = "- "+ data.products[i].name;
     productsCommanded.appendChild(nameProduct);
 };
 
-console.log(localStorage.getItem("data"));
