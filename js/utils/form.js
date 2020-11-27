@@ -16,20 +16,20 @@ let regex = {
 };
 
 // #### Comparer les résultats saisies et les expressions régulières avant l'autorisation d'enregistrer #### //
-const inputValidation = (idHTML, regex, name) => {
+const inputValidation = (idHTML, regex, title) => {
 
     idHTML.addEventListener("input", (event) => {
 
         const validation = event.target.nextElementSibling; 
 
         if (regex.test(event.target.value)) {
-        validation.textContent = `${name} valide`;
+        validation.textContent = `${title} valide`;
         event.target.classList.add("is-valid");
         event.target.classList.remove("is-invalid");
         validation.classList.add("text-success")
         validation.classList.remove("text-danger");
         } else {
-            validation.textContent = `${name} invalide`;
+            validation.textContent = `${title} invalide`;
             event.target.classList.add("is-invalid");
             event.target.classList.remove("is-valid");
             validation.classList.add("text-danger");

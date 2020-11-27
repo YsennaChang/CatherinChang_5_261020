@@ -6,8 +6,8 @@
 
 console.log("Cart says Hello !")
 
-const formatInPrice = (value) => {
-    return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR'}).format(value/100);
+const formatInPrice = (price) => {
+    return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR'}).format(price/100);
 }
 
 

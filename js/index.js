@@ -78,7 +78,7 @@ const generateCardsInformations = (response) => {
     //création block lien vers la page produit//
     const stretchedLink = document.createElement("a");
     stretchedLink.classList.add("stretched-link");
-    stretchedLink.href = "products.html";
+    stretchedLink.href = "product.html";
     cardBody.appendChild(stretchedLink);
 
     //création block Nom du Teddy//
