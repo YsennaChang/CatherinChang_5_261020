@@ -9932,11 +9932,6 @@ header .roues {
   fill: #290A03;
   stroke: white;
 }
-header .btn {
-  position: absolute;
-  top: 25%;
-  right: 20px;
-}
 
 .main-aside {
   position: relative;
