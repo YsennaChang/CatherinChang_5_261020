@@ -15,8 +15,6 @@ get("/")
         // Génère les informations des cards avec les informations de l'API
         generateCardsInformations (res);
 
-        // Sauvegarde la sélection dans le localStorage
-        addSelectInStorage(res);
     })
     .catch(err => {
         console.error('Il y a eu un problème avec l\'opération fetch: ' + APIUrl +". "+ err.message)

@@ -145,7 +145,7 @@ commandConfirmed.addEventListener("click", (e)=>{
             .then(data => {
                 console.log(data);
                 localStorage.setItem("data", JSON.stringify(data)); // sauvegarder la réponse du back dans le localStorage
-                window.location = "commanded.html"; // Rediriger vers la page commanded.html
+                window.location = "confirmation.html"; // Rediriger vers la page confirmation.html
             })    
     } else if (products.length==0){ // Si le panier est vide
         alert ("Y'a forcément quelque chose qui vous tente?")

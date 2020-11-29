@@ -12,7 +12,7 @@ get("/" + parameter)
     .then(res => {
         console.log(res)
 
-        // Remplace les éléments statiques par les informations du back
+        // Remplace les éléments statiques par les informations de l'API
         replaceStaticByDynamicInformations (res);
 
         // Ajoute les EventListeners "click" sur les boutons "ajouter au panier", ajoute les products_id dans le panier, met le panier dans le localStorage

@@ -42,8 +42,8 @@
                 Panier
             </a>                
         </header>
-        <div class="main-aside">
-            <main class="container">
+        <div class="main-aside row">
+            <main class="container col-12 col-lg-10">
                 <aside class="jumbotron">
                     <h2>Notre credo</h2>
                     <p>
@@ -81,59 +81,62 @@
                 </article>
             </main>
             
-            <aside class="assistant col-2 bg-primary">
+            <aside class="assistant col-12 col-lg-2 bg-primary container">
                 <div id="msgSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
                     <h5 class="alert-heading">Félicitations <span id="firstNameSaved"></span> ! Vous avez réussi votre enregistrement!</h5>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="movible mb-5">
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label for="lastname" class="text-light"> Nom :</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="Bear" required/>
-                            <div class="result"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="firstname" class="text-light"> Prénom :</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="Teddy" required/>
-                            <div class="result"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="address" class="text-light"> Adresse :</label>
-                            <input type="text" class="form-control" id="address" placeholder="Le village des nuages" required/>
-                            <div class="result"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="city" class="text-light"> Ville :</label>
-                            <input type="text" class="form-control" id="city" placeholder="Bisouville" required/>
-                            <div class="result"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="text-light"> Email :</label>
-                            <input type="email" class="form-control" id="email" placeholder="email@orinoco.com" required/>
-                            <div class="result"></div>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="saveInStorage">
-                            <label class="form-check-label text-light" for="saveInStorage">
-                                Enregistrer ces informations dans le sessionStorage (par défaut, s'enregistre dans localStorage pour toujours)
-                            </label>
-                        </div>
+                <div class="movible row mt-5">
+                    <div class="offset-3 col-6">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="lastName" class="text-light"> Nom :</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="Bear" required/>
+                                <div class="result"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName" class="text-light"> Prénom :</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="Teddy" required/>
+                                <div class="result"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address" class="text-light"> Adresse :</label>
+                                <input type="text" class="form-control" id="address" placeholder="Le village des nuages" required/>
+                                <div class="result"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="city" class="text-light"> Ville :</label>
+                                <input type="text" class="form-control" id="city" placeholder="Bisouville" required/>
+                                <div class="result"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="text-light"> Email :</label>
+                                <input type="email" class="form-control" id="email" placeholder="email@orinoco.com" required/>
+                                <div class="result"></div>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="saveInStorage">
+                                <label class="form-check-label text-light" for="saveInStorage">
+                                    Enregistrer ces informations dans le sessionStorage (par défaut, s'enregistre dans localStorage pour toujours)
+                                </label>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-light mt-3 text-primary"  id="contact-submited">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row offset-3 col-6 is-not-visible flex-column" id="infoSaved">
+                        <div class="text-light text-break" id="registered-infos">Insertion des données utilisateurs</div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-light mt-3 text-primary"  id="contact-submited">Enregistrer</button>
+                            <button class="btn btn-light text-primary" id="btn-modify">Modifier</button>
                         </div>
-
-                    </form>
-                    <div id="registered-infos" class="text-light ml-3 text-break is-not-visible">Insertion des données utilisateurs</div>
-                    <div class="text-center">
-                        <button id="btn-modify" class="btn btn-light text-primary mt-3 is-not-visible">Modifier</button>
                     </div>
                 </div>
-                <footer class="container text-light">
-                    <h2> Nos autres applications</h2>
-                    <ul class="font-weight-bold">
+                <footer class="container text-light mt-5 mb-5 ">
+                    <h2 class="text-center"> Nos autres applications</h2>
+                    <ul class="font-weight-bold offset-3 col-6">
                         <li><a class="text-light" href="#">Oribook</a></li>
                         <li><a class="text-light" href="#">Oritextil</a></li>
                         <li><a class="text-light" href="#">Oriphoto</a></li>

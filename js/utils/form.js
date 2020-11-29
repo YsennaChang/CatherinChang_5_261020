@@ -80,7 +80,7 @@ const disabledBtn = () => {
 const form = document.getElementById("contact-form"); // visible (par défaut)
 const registeredInfos = document.getElementById("registered-infos"); // invisible (par défaut)
 const btnModify = document.getElementById("btn-modify"); // invisible (par défaut)
-
+const infoSaved = document.getElementById("infoSaved")
 
 // #### Définition des fonctions globales #### //
 
@@ -94,10 +94,9 @@ const replaceBlockRegisteredInfos = () => { // Récupère les infos client du lo
     firstNameSaved.innerHTML = contactJSON.firstName; //Message success, personalisation avec le prénom de l'utilisateur
 }
 
-const toggleVisibilityBlock = () => { //switch la visibilité de 3 éléments qui doivent switch d'état au même moment.
+const toggleVisibilityBlock = () => { //switch la visibilité de 2 éléments qui doivent switch d'état au même moment.
     form.classList.toggle("is-not-visible");
-    registeredInfos.classList.toggle("is-not-visible");
-    btnModify.classList.toggle("is-not-visible");
+    infoSaved.classList.toggle("is-not-visible");
 }
 
 
@@ -124,7 +123,7 @@ contactSubmited.addEventListener("click", (event) => {
     // Insère les nouvelles informations du contact dans le bloc contact
     replaceBlockRegisteredInfos(); 
 
-    // Formulaire invisible, block info et Bouton modifier visibles
+    // Formulaire invisible, block info visibles
     toggleVisibilityBlock();
 
 })
@@ -133,7 +132,7 @@ contactSubmited.addEventListener("click", (event) => {
 
 if (localStorage.getItem("contact")) {
     
-    // Formulaire invisible, block info et Bouton "modifier" visibles
+    // Formulaire invisible, block info visibles
     toggleVisibilityBlock();
     //charger les info du localStorage et les insérer dans le bloc infos
     replaceBlockRegisteredInfos(); 
@@ -144,6 +143,6 @@ if (localStorage.getItem("contact")) {
 btnModify.addEventListener("click", (event) => {
     event.preventDefault();
     
-    // Formulaire visible, block info et Bouton "modifier" invisibles
+    // Formulaire visible, block info invisibles
     toggleVisibilityBlock();
 });

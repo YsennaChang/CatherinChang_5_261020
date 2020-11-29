@@ -1,7 +1,7 @@
 // =========== Page Confirmation de commande =========== //
 // Remplir la page de remerciement par les informations renvoyées par l'API
 
-console.log("Commanded says Hello !")
+console.log("Confirmation says Hello !")
 
 const data = JSON.parse(localStorage.getItem("data"));
 console.log(data);
