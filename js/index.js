@@ -78,7 +78,7 @@ const generateCardsInformations = (response) => {
     //création block lien vers la page produit//
     const stretchedLink = document.createElement("a");
     stretchedLink.classList.add("stretched-link");
-    stretchedLink.href = "product.html";
+    stretchedLink.href = "product.html?_id=" + response[i]._id;
     cardBody.appendChild(stretchedLink);
 
     //création block Nom du Teddy//
@@ -99,18 +99,5 @@ const generateCardsInformations = (response) => {
     cardText.classList.add("card-text");
     cardText.innerHTML = response[i].description;
     cardBody.appendChild(cardText);
-    }
-}
-
-// ====> 3) Sauvegarder la selection dans le localStorage <====//
-
-const addSelectInStorage = (response) => {
-    for (let i=0; i< response.length; i++) {
-        const card = document.getElementsByClassName("card")[i];
-        card.addEventListener("click", (e)=>{
-            let lastChoice = response[i]._id;
-            localStorage.setItem("lastChoice", JSON.stringify(lastChoice));
-            console.log(lastChoice);
-        })
     }
 }

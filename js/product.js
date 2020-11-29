@@ -4,8 +4,11 @@
 
 console.log("Products says Hello !")
 
-const lastChoice = JSON.parse(localStorage.getItem("lastChoice"));
-get("/" + lastChoice)
+const searchParams = new URLSearchParams(window.location.search); // récupère dans l'url ce qu'il y a après ? et met dans l'interface URLSearchParams pour travailler avec la méthode get() associée.
+const parameter = searchParams.get("_id"); // récupère ce qui se situe après le "_id="
+console.log(parameter);
+
+get("/" + parameter)
     .then(res => {
         console.log(res)
 
@@ -20,7 +23,6 @@ get("/" + lastChoice)
     })
 
 // ====> 1) Afficher le produit choisi en dynamique ====//
-
 const replaceStaticByDynamicInformations = (response) => {
 
     // Remplacer l'url et l'alt de l'image du Teddy//
@@ -52,7 +54,6 @@ const replaceStaticByDynamicInformations = (response) => {
 }
 
 //=====> 2) Ajouter l'article et son option au localStorage <==== //
-
 const addProductInCart = (response) => {
 
     const btnAddToCart = document.getElementsByClassName("btn-add-to-cart")[0];
