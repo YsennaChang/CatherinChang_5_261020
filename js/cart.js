@@ -20,53 +20,52 @@ const createARowByProductsInCart = () => {
     cart.forEach( product => {
 
         // div card-body rattaché à resume
-        const cardBody = document.createElement("div");
-        cardBody.classList.add("card-body","d-flex");
-        resume.appendChild(cardBody);
+        const tr = document.createElement("tr");
+        tr.classList.add("tr")
+        resume.appendChild(tr);
 
         // image miniature attachée à card-body
+        const th = document.createElement("th");
+        th.setAttribute("scope", "row");
+        tr.appendChild(th);
+
         const img = document.createElement("img");
-        img.classList.add("float-left","shadow-sm","col-1");
-        // img.style.maxWidth="100px";
+        img.classList.add("float-left","shadow-sm", "col-1");
+        img.style.maxWidth="100px";
         img.src = product.imageUrl;
-        cardBody.appendChild(img);
+        th.appendChild(img);
 
-        // div card-text attachée à card-body
-        const cardText = document.createElement("div");
-        cardText.classList.add("card-text","col-10","d-flex");
-        cardBody.appendChild(cardText);
-
-        // h3 nom du teddy attachée à div card-text
-        const teddyName = document.createElement("h4");
+        //  nom du teddy attachée à tr
+        const teddyName = document.createElement("td");
+        teddyName.classList.add("align-middle");
         teddyName.innerHTML = product.name;
-        teddyName.classList.add("ml-3","col-4");
-        cardText.appendChild(teddyName);
+        tr.appendChild(teddyName);
 
-        // span Sa couleur attaché à div card-text
-        const option = document.createElement("span");
+        // Sa couleur attaché à tr
+        const option = document.createElement("td");
+        option.classList.add("align-middle");
         option.innerHTML =  product.option;
-        option.classList.add("p-1","ml-3","col-3","text-center")
-        cardText.appendChild(option);
+        tr.appendChild(option);
 
 
-        // span quantité attaché à div card-text
-        const quantity = document.createElement("span");
+        // quantité attaché à tr
+        const quantity = document.createElement("td");
+        quantity.classList.add("align-middle");
         quantity.innerHTML = 1;
-        quantity.classList.add("p-1","ml-3","col-2","text-center");
-        cardText.appendChild(quantity);
+        tr.appendChild(quantity);
 
-        // span prix attaché à div card-text
-        const price= document.createElement("span");
+        // span prix attaché à tr
+        const price= document.createElement("td");
+        price.classList.add("align-middle");
         price.innerHTML = formatInPrice(product.price);
-        price.classList.add("p-1","ml-3","col-2","text-center");
-        cardText.appendChild(price);
+        tr.appendChild(price);
 
         // bouton pour enlever un produit attaché à card-body
-        const removeProduct = document.createElement("button");
-        removeProduct.classList.add("btn","btn-primary","ml-3","btn-add-to-cart","col-1", "btn-remove-product-from-cart","mx-auto");
+        const removeProduct = document.createElement("td");
+        removeProduct.classList.add("btn","btn-primary","ml-3","btn-add-to-cart", "btn-remove-product-from-cart", "px-4","mx-3", "my-3");
         removeProduct.href = "#";
         removeProduct.type = "submit";
-        cardBody.appendChild(removeProduct);
+        tr.appendChild(removeProduct);
 
         // icone fontawesome rattaché à removeProduct
         const iconGarbage = document.createElement("i");
@@ -109,7 +108,7 @@ const removeProductFromCart = () => {
             localStorage.setItem("cart", JSON.stringify(cart));
 
             // Enlève l'affichage de la ligne //
-            if(event.target.parentElement.classList == "card-body d-flex") {
+            if(event.target.parentElement.classList == "tr") {
                 event.target.parentElement.remove();
             } else {
                 event.target.parentElement.parentElement.remove();
