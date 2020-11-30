@@ -88,7 +88,7 @@ const replaceBlockRegisteredInfos = () => { // Récupère les infos client du lo
     
     const contactJSON = JSON.parse(localStorage.getItem("contact"));//relecture des données dans le localStorage
     
-    registeredInfos.innerHTML += "<br/>"+ contactJSON.firstName+" "+"<b>"+contactJSON.lastName.toUpperCase()+"</b>"+"<br/>"+contactJSON.address+ "<br/>" +contactJSON.city+ "<br/>"+contactJSON.email; // Insertion dans le bloc infos
+    registeredInfos.innerHTML = "Nous vous livrons à cette adresse :<br/>"+ contactJSON.firstName+" "+"<b>"+contactJSON.lastName.toUpperCase()+"</b>"+"<br/>"+contactJSON.address+ "<br/>" +contactJSON.city+ "<br/>"+contactJSON.email; // Insertion dans le bloc infos
     
     const firstNameSaved = document.getElementById("firstNameSaved");
     firstNameSaved.innerHTML = contactJSON.firstName; //Message success, personalisation avec le prénom de l'utilisateur
