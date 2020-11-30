@@ -88,7 +88,7 @@ const calculateTotal = () => {
     sumFormated = formatInPrice(sum);
 
     // prix rattaché à subtotal
-    let subtotal = document.getElementById("subtotal");
+    const subtotal = document.getElementById("subtotal");
     subtotal.innerHTML = sumFormated;
 
 }

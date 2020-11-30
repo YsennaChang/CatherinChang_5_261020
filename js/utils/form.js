@@ -7,27 +7,27 @@ console.log("Form says Hello !")
 // ===============> 1) Validations des données <=============== //
 
 // #### Définition des expressions régulières par champ #### //
-let regex = {
+const regex = {
     lastName : /[A-z]{1,}/, // au moins une lettre 
-    firstName : /[A-z]{1,}/, // au moins une lettre 
-    address : /[A-z]{1,}/, // au moins une lettre 
-    city : /[A-z]{1,}/, // au moins une lettre 
+    firstName : /[A-z]{1,}/,
+    address : /[A-z]{1,}/,
+    city : /[A-z]{1,}/,
     email :/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g // doit commencer par un mot alphanumérique ou underscore ("-" et "." autorisés), suivit de "@", puis d'un mot ("-" et "." autorisés) et finir par un mot de 2 à 4 caractères ("-" autorisés)
 };
 
 // #### Comparer les résultats saisies et les expressions régulières avant l'autorisation d'enregistrer #### //
-const inputValidation = (idHTML, regex, title) => {
+const validateInputWithRegex = (idHTML, regex, title) => {
 
     idHTML.addEventListener("input", (event) => {
 
         const validation = event.target.nextElementSibling; 
 
         if (regex.test(event.target.value)) {
-        validation.textContent = `${title} valide`;
-        event.target.classList.add("is-valid");
-        event.target.classList.remove("is-invalid");
-        validation.classList.add("text-success")
-        validation.classList.remove("text-danger");
+            validation.textContent = `${title} valide`;
+            event.target.classList.add("is-valid");
+            event.target.classList.remove("is-invalid");
+            validation.classList.add("text-success")
+            validation.classList.remove("text-danger");
         } else {
             validation.textContent = `${title} invalide`;
             event.target.classList.add("is-invalid");
@@ -36,67 +36,76 @@ const inputValidation = (idHTML, regex, title) => {
             validation.classList.remove("text-success");
         }
 
-        
-        disabledBtn();// Rend clickable le bouton "Enregistrer" uniquement lorsque tout les champs du formulaire ont été remplis et validés
+        // Rend clickable le bouton "Enregistrer" uniquement lorsque tous les champs du formulaire ont été remplis et validés
+        enableContactSubmitBtn ();
     })
 }
 
-inputValidation(lastName, regex.lastName, "Nom");
-inputValidation(firstName, regex.firstName, "Prénom");
-inputValidation(address, regex.address, "Adresse");
-inputValidation(city, regex.city, "Ville");
-inputValidation(email, regex.email, "Email");
+const lastName = document.getElementById("last-name");
+const firstName = document.getElementById("first-name");
+const address = document.getElementById("address");
+const city = document.getElementById("city");
+const email = document.getElementById("email");
+
+validateInputWithRegex(lastName, regex.lastName, "Nom");
+validateInputWithRegex(firstName, regex.firstName, "Prénom");
+validateInputWithRegex(address, regex.address, "Adresse");
+validateInputWithRegex(city, regex.city, "Ville");
+validateInputWithRegex(email, regex.email, "Email");
+
 
 // #### Afficher des messages de succès ou d'erreur en fonction des données saisies #### //
 const result = document.getElementsByClassName("result");
 
-const disabledBtn = () => {
+const enableContactSubmitBtn = () => {
 
     let counter = 0;
 
-    for (let i = 0; i< result.length ; i++ ) {
+    for (let i = 0; i < result.length ; i++ ) {
 
-        const value = result[i].classList.value
+        const input = result[i].classList.value
         
-        if ( value == ("result text-success")){ //compte le nombre de champ validé
+        if ( input == ("result text-success")){
             counter += 1;
 
-            if( counter === result.length){ // rend clickable le bouton si le compteur est égale au nombre de champ existant. Tous les champs sont obligatoires.
-                contactSubmited.disabled = false ;
+            if( counter === result.length){ 
+                // rend clickable le bouton si le compteur est égale au nombre de champ existant. Tous les champs sont obligatoires.
+                contactSubmited.disabled = false;
             } 
         }
         else { // Tant qu'il reste des champs invalides, le bouton n'est pas clickable
-        contactSubmited.disabled = true;
+            contactSubmited.disabled = true;
         }
     }
 }
 
 // ==========> 2) Gestion des données Contact <========== //
 
-
-
 // #### Définition des variables globales #### //
 
 const form = document.getElementById("contact-form"); // visible (par défaut)
 const registeredInfos = document.getElementById("registered-infos"); // invisible (par défaut)
 const btnModify = document.getElementById("btn-modify"); // invisible (par défaut)
-const infoSaved = document.getElementById("infoSaved")
+const savedInfo = document.getElementById("saved-info")
 
 // #### Définition des fonctions globales #### //
 
-const replaceBlockRegisteredInfos = () => { // Récupère les infos client du localStorage et les affiche dans un block à la place du formulaire
+// Récupère les infos client du localStorage et les affiche dans un block à la place du formulaire
+const replaceBlockRegisteredInfos = () => { 
     
     const contactJSON = JSON.parse(localStorage.getItem("contact"));//relecture des données dans le localStorage
     
-    registeredInfos.innerHTML = "Nous vous livrons à cette adresse :<br/>"+ contactJSON.firstName+" "+"<b>"+contactJSON.lastName.toUpperCase()+"</b>"+"<br/>"+contactJSON.address+ "<br/>" +contactJSON.city+ "<br/>"+contactJSON.email; // Insertion dans le bloc infos
+    registeredInfos.innerHTML = "Nous vous livrons à cette adresse :<br/>"+ contactJSON.firstName+" <b>"+ contactJSON.lastName.toUpperCase()+"</b> <br/>" + contactJSON.address+ "<br/>" +contactJSON.city+ "<br/>" + contactJSON.email; // Insertion dans le bloc infos
     
-    const firstNameSaved = document.getElementById("firstNameSaved");
+    const firstNameSaved = document.getElementById("first-name-saved");
     firstNameSaved.innerHTML = contactJSON.firstName; //Message success, personalisation avec le prénom de l'utilisateur
 }
 
-const toggleVisibilityBlock = () => { //switch la visibilité de 2 éléments qui doivent switch d'état au même moment.
+//switch la visibilité de 2 éléments qui doivent switch d'état au même moment//
+
+const toggleVisibilityBlock = () => { 
     form.classList.toggle("is-not-visible");
-    infoSaved.classList.toggle("is-not-visible");
+    savedInfo.classList.toggle("is-not-visible");
 }
 
 
@@ -120,7 +129,6 @@ contactSubmited.addEventListener("click", (event) => {
     
     $(".alert").show(); // Afficher un message de réussite personalisé
 
-    // Insère les nouvelles informations du contact dans le bloc contact
     replaceBlockRegisteredInfos(); 
 
     // Formulaire invisible, block info visibles
@@ -132,13 +140,13 @@ contactSubmited.addEventListener("click", (event) => {
 
 if (localStorage.getItem("contact")) {
     
+    replaceBlockRegisteredInfos(); 
+
     // Formulaire invisible, block info visibles
     toggleVisibilityBlock();
-    //charger les info du localStorage et les insérer dans le bloc infos
-    replaceBlockRegisteredInfos(); 
 }
 
-// #### Cas 2: Le bouton "modifier" a été cliqué, effacer les données du block info. afficher le bloc formulaire, relecture du localStorage et insérer les nouvelles données dans le bloc info, afficher le bouton "modifier" #### //
+// #### Cas 2: Le bouton "modifier" a été cliqué, afficher le bloc formulaire, insérer les nouvelles données dans le bloc info #### //
 
 btnModify.addEventListener("click", (event) => {
     event.preventDefault();
