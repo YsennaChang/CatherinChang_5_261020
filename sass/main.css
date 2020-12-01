@@ -10842,12 +10842,6 @@ header .roues {
   stroke: white;
 }
 
-header .btn {
-  position: absolute;
-  top: 25%;
-  right: 20px;
-}
-
 .main-aside {
   position: relative;
   top: 82px;

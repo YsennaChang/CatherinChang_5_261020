@@ -11,13 +11,11 @@
 @import "./layouts/container";
 @import "./pages/product";
 
-/* * {
-    border: 1px solid black;
-} */
+// * {
+//     border: 1px solid black;
+// }
 
 body {
-    width: 100%;
-    margin:0;
     background: $tertiary url("../images/bg-ours-peluche-beige.jpg") no-repeat fixed;
     background-size: auto 95vh;
     background-position-y: bottom;
@@ -42,15 +40,11 @@ header {
             fill : $primary;
             stroke : white;
         }
-    // & .btn {
-    //     position: absolute;
-    //     top: 25%;
-    //     right: 20px;
-    // }
 }
 
-.main-aside {
+.main-aside { 
     position: relative;
+    margin: 0;
     top : 82px;
 }
 .main-aside{

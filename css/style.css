@@ -9902,12 +9902,7 @@ h1 {
   font-family: "Salsa", cursive;
 }
 
-/* * {
-    border: 1px solid black;
-} */
 body {
-  width: 100%;
-  margin: 0;
   background: #FEF5ED url("../images/bg-ours-peluche-beige.jpg") no-repeat fixed;
   background-size: auto 95vh;
   background-position-y: bottom;
@@ -9935,6 +9930,7 @@ header .roues {
 
 .main-aside {
   position: relative;
+  margin: 0;
   top: 82px;
 }
 
