@@ -11,14 +11,9 @@ const messageError = "Vérifiez l'état de l'API: Dans votre console, placez vou
 
 const get = (parameter) => {
     return fetch(APIUrl + parameter) // retourne la promesse du fetch qui retourne l'objet json 
-        .then((res) => {
-            if(res.ok) {
-                return res.json()
-            } else {
-                alert(messageError + APIUrl + parameter)
-            }
-        })
+        .then((res) => res.json())
         .then(json => json)
+        .catch(err => alert(messageError+ err + APIUrl + parameter))
 }
 
 // =====> 2) Envoyer et récupérer des données de l'API <===== //
@@ -34,12 +29,7 @@ const post = (parameter, dataToSend) => {
     };
 
    return fetch(APIUrl+parameter , myInit) // retourne la promesse du fetch qui retourne l'objet json
-    .then (res => {
-        if(res.ok) {
-            return res.json()
-        } else {
-            alert(messageError + APIUrl + parameter)
-        }
-    })
+    .then (res => res.json())
     .then (json => json)
+    .catch(err => alert(messageError + err + APIUrl + parameter))
 }

@@ -114,6 +114,8 @@ const toggleVisibilityBlock = () => {
 $(".alert").hide(); // cache le message de réussite d'enregistrement par défaut
 
 const contactSubmited = document.getElementById("contact-submited");
+contactSubmited.disabled = true; //désactivé par défaut
+
 contactSubmited.addEventListener("click", (event) => {
     event.preventDefault();
 

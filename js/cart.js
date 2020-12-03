@@ -4,12 +4,7 @@
 // 3) Rendre Fonctionnel l'icone poubelle //
 // 4) Envoyer le récap de commande et les informations contacts et récupérer le numéro de commande //
 
-console.log("Cart says Hello !")
-
-const formatInPrice = (price) => {
-    return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'EUR'}).format(price/100);
-}
-
+console.log("Cart says Hello !");
 
 // ====> 1) Créer une ligne par produit dans le Panier <==== //
 
@@ -78,21 +73,7 @@ createARowByProductsInCart();
 
 // ====> 2) Calcul de la somme des articles dans le panier <==== //
 
-const calculateTotal = () => {
-
-    let sum = 0;
-
-    // Ajouter chaque prix à la somme
-    cart.forEach(product => sum += product.price);
-
-    sumFormated = formatInPrice(sum);
-
-    // prix rattaché à subtotal
-    const subtotal = document.getElementById("subtotal");
-    subtotal.innerHTML = sumFormated;
-
-}
-calculateTotal();
+calculateTotal(cart, "subtotal");
 
 // ====> 3) Rendre fonctionnel le bouton poubelle <====//
 
@@ -143,7 +124,10 @@ commandConfirmed.addEventListener("click", (e)=>{
         post("/order", body)
             .then(data => {
                 console.log(data);
-                localStorage.setItem("data", JSON.stringify(data)); // sauvegarder la réponse du back dans le localStorage
+                // sauvegarder la réponse du back dans le localStorage
+                localStorage.setItem("data", JSON.stringify(data));
+                // Mise à zéro du panier 
+                localStorage.removeItem("cart");
                 window.location = "confirmation.html"; // Rediriger vers la page confirmation.html
             })    
     } else if (products.length==0){ // Si le panier est vide
