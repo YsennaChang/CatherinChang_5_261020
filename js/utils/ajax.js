@@ -6,7 +6,9 @@ console.log("Ajax says Hello !")
 
 // ======> 1) Récupérer les données de l'API <====== //
 
-const APIUrl = "http://localhost:3000/api/teddies";
+const APIUrl = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+  ? "http://localhost:3000/api/teddies"
+  : "https://oc-devweb-p5-api.herokuapp.com/api/teddies"
 const messageError = "Vérifiez l'état de l'API: Dans votre console, placez vous dans le dossier de l'API et installez le via la commande 'npm install' puis mettre en route via 'node server'.\nVérifiez que le chemin d'accès est correcte : "
 
 const get = (parameter) => {

@@ -25,7 +25,6 @@ city.innerHTML = data.contact.city;
 // Total TTC commande
 calculateTotal( data.products, "total");
 
-
 // Récap des produits commandés
 const productsCommanded = document.getElementById("products-commanded");
 
